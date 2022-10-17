@@ -20,9 +20,6 @@ class UserListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
-            let user = try await network.user(userName: "mojombo")
-            print("\(user)")
         }
     }
 }

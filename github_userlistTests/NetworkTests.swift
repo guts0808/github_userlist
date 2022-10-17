@@ -47,6 +47,18 @@ final class NetworkTests: XCTestCase {
         XCTAssertNil(result)
     }
 
+    func testuserWhenSuccess() async throws {
+        let userName = "test"
+        HTTPStubs.stubRequests(passingTest: { request in
+            return request.url?.absoluteString == "https://api.github.com/users/\(userName)"
+        }, withStubResponse: { request in
+            return HTTPStubsResponse(data: MockData.jsonData(at: "MockUserDetailResponse"), statusCode: 200, headers: nil)
+        })
+        
+        let result = try await network.user(userName: userName)
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result?.name, "monalisa octocat")
+    }
 }
 
  

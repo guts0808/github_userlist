@@ -10,7 +10,7 @@ import UIKit
 class UserListTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"
     let interactor = UserListInteractor()
-    
+    let network = Network()
     
     override func viewDidLoad() {
         tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
@@ -20,6 +20,9 @@ class UserListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            
+            let user = try await network.user(userName: "mojombo")
+            print("\(user)")
         }
     }
 }

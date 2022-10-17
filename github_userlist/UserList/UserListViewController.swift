@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol UserListViewControllerListener: AnyObject {
-    func login(withPlayer1Name: String?, player2Name: String?)
-}
-
 class UserListTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"
     let interactor = UserListInteractor()

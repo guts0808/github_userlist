@@ -17,6 +17,9 @@
 		9392C0F128FD315A00C2B00C /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F028FD315A00C2B00C /* UserListTableViewCell.swift */; };
 		9392C0F328FD3CEA00C2B00C /* UserListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F228FD3CEA00C2B00C /* UserListInteractor.swift */; };
 		9392C0F528FD453B00C2B00C /* UserListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F428FD453B00C2B00C /* UserListInteractorTests.swift */; };
+		9392C0F828FD5AB300C2B00C /* UserDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F728FD5AB300C2B00C /* UserDetailTableViewController.swift */; };
+		9392C0FA28FD5B4D00C2B00C /* UserDetailTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F928FD5B4D00C2B00C /* UserDetailTableViewHeaderView.swift */; };
+		9392C0FC28FD5C7E00C2B00C /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0FB28FD5C7E00C2B00C /* UserDetailTableViewCell.swift */; };
 		93B06C5728F9582D0079295C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93B06C5628F9582D0079295C /* Assets.xcassets */; };
 		93B06C5A28F9582D0079295C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93B06C5928F9582D0079295C /* Preview Assets.xcassets */; };
 		93B3212C28FD27DE005FE50A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B3212B28FD27DE005FE50A /* AppDelegate.swift */; };
@@ -48,6 +51,9 @@
 		9392C0F028FD315A00C2B00C /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		9392C0F228FD3CEA00C2B00C /* UserListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractor.swift; sourceTree = "<group>"; };
 		9392C0F428FD453B00C2B00C /* UserListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractorTests.swift; sourceTree = "<group>"; };
+		9392C0F728FD5AB300C2B00C /* UserDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewController.swift; sourceTree = "<group>"; };
+		9392C0F928FD5B4D00C2B00C /* UserDetailTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewHeaderView.swift; sourceTree = "<group>"; };
+		9392C0FB28FD5C7E00C2B00C /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
 		93B06C4F28F9582C0079295C /* github_userlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = github_userlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B06C5628F9582D0079295C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93B06C5928F9582D0079295C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -125,6 +131,16 @@
 			path = MockData;
 			sourceTree = "<group>";
 		};
+		9392C0F628FD5A1400C2B00C /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9392C0F728FD5AB300C2B00C /* UserDetailTableViewController.swift */,
+				9392C0F928FD5B4D00C2B00C /* UserDetailTableViewHeaderView.swift */,
+				9392C0FB28FD5C7E00C2B00C /* UserDetailTableViewCell.swift */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
 		93B06C4628F9582C0079295C = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +164,7 @@
 		93B06C5128F9582C0079295C /* github_userlist */ = {
 			isa = PBXGroup;
 			children = (
+				9392C0F628FD5A1400C2B00C /* UserDetail */,
 				93B3212F28FD29EB005FE50A /* UserList */,
 				932848CB28FABE580006BCA3 /* Network */,
 				932848C828FABBDC0006BCA3 /* Entity */,
@@ -356,12 +373,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				93B3213128FD2A09005FE50A /* UserListViewController.swift in Sources */,
+				9392C0FA28FD5B4D00C2B00C /* UserDetailTableViewHeaderView.swift in Sources */,
 				93B3212C28FD27DE005FE50A /* AppDelegate.swift in Sources */,
 				932848CA28FABC150006BCA3 /* User.swift in Sources */,
 				9392C0F328FD3CEA00C2B00C /* UserListInteractor.swift in Sources */,
+				9392C0FC28FD5C7E00C2B00C /* UserDetailTableViewCell.swift in Sources */,
 				9328484528F960880006BCA3 /* Network.swift in Sources */,
 				9392C0F128FD315A00C2B00C /* UserListTableViewCell.swift in Sources */,
 				93B3212E28FD27EE005FE50A /* SceneDelegate.swift in Sources */,
+				9392C0F828FD5AB300C2B00C /* UserDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

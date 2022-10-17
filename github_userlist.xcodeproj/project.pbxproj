@@ -56,8 +56,6 @@
 		93B3212D28FD27EE005FE50A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		93B3213028FD2A09005FE50A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		9977F7D9B581C3CFEE790733 /* Pods_github_userlist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_github_userlist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7E126CE8D483D75FBBB56A6 /* Pods-github_userlist-github_userlistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_userlist-github_userlistUITests.release.xcconfig"; path = "Target Support Files/Pods-github_userlist-github_userlistUITests/Pods-github_userlist-github_userlistUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BE20F8503E9A05D30708F72C /* Pods-github_userlist-github_userlistUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_userlist-github_userlistUITests.debug.xcconfig"; path = "Target Support Files/Pods-github_userlist-github_userlistUITests/Pods-github_userlist-github_userlistUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E42C83A5BB89780DB4236C2C /* Pods_github_userlist_github_userlistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_github_userlist_github_userlistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -86,8 +84,6 @@
 			children = (
 				609AD677F4FDCD1003C4174E /* Pods-github_userlist.debug.xcconfig */,
 				52207083D074939655402315 /* Pods-github_userlist.release.xcconfig */,
-				BE20F8503E9A05D30708F72C /* Pods-github_userlist-github_userlistUITests.debug.xcconfig */,
-				A7E126CE8D483D75FBBB56A6 /* Pods-github_userlist-github_userlistUITests.release.xcconfig */,
 				2433CCA9AD15913BF3CB7F92 /* Pods-github_userlistTests.debug.xcconfig */,
 				84E9DA11B5CC9797A36A119E /* Pods-github_userlistTests.release.xcconfig */,
 			);

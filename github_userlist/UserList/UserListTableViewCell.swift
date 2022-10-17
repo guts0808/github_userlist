@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class UserListTableViewCell: UITableViewCell {
     static let imageSize = CGSize(width: 44, height: 44)
@@ -44,6 +45,10 @@ class UserListTableViewCell: UITableViewCell {
     }
     
     func style(model: User) {
+        if let url = URL(string: model.avatarURL),
+           let userIcon = userIcon {
+            Nuke.loadImage(with: url, into: userIcon)
+        }
         label?.text = model.login
     }
 }

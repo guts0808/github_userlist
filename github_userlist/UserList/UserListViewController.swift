@@ -7,17 +7,20 @@
 
 import UIKit
 
+protocol UserListViewControllerListener: AnyObject {
+    func login(withPlayer1Name: String?, player2Name: String?)
+}
+
 class UserListTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"
-    var userList = [User]()
-    let network = Network()
+    let interactor = UserListInteractor()
+    
     
     override func viewDidLoad() {
         tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         
         Task {
-            guard let userList = try? await network.userList() else { return }
-            self.userList = userList
+            await interactor.loadData()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -31,13 +34,14 @@ extension UserListTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList.count
+        return interactor.numberOfUser
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath)
-        if let cell = cell as? UserListTableViewCell, indexPath.row < userList.count {
-            cell.style(model: userList[indexPath.row])
+        if let cell = cell as? UserListTableViewCell,
+            let user = interactor.user(at: indexPath.row) {
+            cell.style(model: user)
         }
         return cell
     }

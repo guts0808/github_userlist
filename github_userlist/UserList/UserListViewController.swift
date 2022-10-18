@@ -10,7 +10,7 @@ import UIKit
 class UserListTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"
     let interactor = UserListInteractor()
-    let network = Network()
+    let router = UserListRouter()
     
     override func viewDidLoad() {
         tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
@@ -46,7 +46,6 @@ extension UserListTableViewController {
 extension UserListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = interactor.user(at: indexPath.row) else { return }
-        let viewController = UserDetailTableViewController(userName: user.login)
-        present(viewController, animated: true)
+        router.showUserDetail(with: user, fromViewController: self)
     }
 }

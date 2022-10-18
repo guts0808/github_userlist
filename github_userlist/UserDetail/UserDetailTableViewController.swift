@@ -6,20 +6,16 @@
 //
 
 import UIKit
+import SafariServices
 
 class UserDetailTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"
     static let headerIdentifier = "Header"
+    let interactor: UserDetailInteractor
+    let router = UserDetailRouter()
     
-    var userDetail: UserDetail?
-    var repositories = [Repository]()
-    let userName: String
-    let network = Network()
-
-    init(userDetail: UserDetail? = nil, repositories: [Repository] = [Repository](), userName: String) {
-        self.userDetail = userDetail
-        self.repositories = repositories
-        self.userName = userName
+    init(userName: String) {
+        self.interactor = UserDetailInteractor(userName: userName)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,8 +29,7 @@ class UserDetailTableViewController: UITableViewController {
         tableView.register(UserDetailTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: Self.headerIdentifier)
         
         Task {
-            self.userDetail = try await network.user(userName: userName)
-            self.repositories = try await network.repositories(userName: userName) ?? [Repository]()
+            await interactor.loadData()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -50,13 +45,14 @@ extension UserDetailTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
+        return interactor.numberOfRepository
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath)
-        if let cell = cell as? UserDetailTableViewCell, indexPath.row < repositories.count {
-            cell.style(repository: repositories[indexPath.row])
+        if let cell = cell as? UserDetailTableViewCell,
+           let repository = interactor.repository(at: indexPath.row) {
+            cell.style(repository: repository)
         }
         return cell
     }
@@ -64,9 +60,17 @@ extension UserDetailTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdentifier)
         if let headerView = headerView as? UserDetailTableViewHeaderView,
-           let userDetail = userDetail {
+           let userDetail = interactor.getUserDetail() {
             headerView.style(userDetail: userDetail)
         }
         return headerView
+    }
+}
+
+// MARK: - Table view delegate
+extension UserDetailTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let repository = interactor.repository(at: indexPath.row) else { return }
+        router.showWebView(with: repository, fromViewController: self)
     }
 }

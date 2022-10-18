@@ -25,7 +25,12 @@ final class UserDetailInteractor {
     
     func loadData() async {
         userDetail = try? await network.user(userName: userName)
-        repositories = (try? await network.repositories(userName: userName)) ?? [Repository]()
+        let originalRepo = (try? await network.repositories(userName: userName)) ?? [Repository]()
+        repositories = filterOutRepo(original: originalRepo)
+    }
+    
+    private func filterOutRepo(original: [Repository]) -> [Repository] {
+        return original.filter({ $0.fork == false })
     }
     
     func repository(at index: Int) -> Repository? {

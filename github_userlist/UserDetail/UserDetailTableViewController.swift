@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class UserDetailTableViewController: UITableViewController {
     static let cellIdentifier = "Cell"

@@ -24,6 +24,7 @@ class UserListTableViewController: UITableViewController {
     }
 }
 
+// MARK: - Table view data source
 extension UserListTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -43,6 +44,7 @@ extension UserListTableViewController {
     }
 }
 
+// MARK: - Table view delegate
 extension UserListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = interactor.user(at: indexPath.row) else { return }

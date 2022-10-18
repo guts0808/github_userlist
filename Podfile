@@ -6,6 +6,7 @@ target 'github_userlist' do
   use_frameworks!
   pod 'OHHTTPStubs'
   pod 'Nuke'
+  pod 'SkeletonView'
 
   # Pods for github_userlist
 

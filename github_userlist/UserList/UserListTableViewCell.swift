@@ -7,11 +7,12 @@
 
 import UIKit
 import Nuke
+import SkeletonView
 
 class UserListTableViewCell: UITableViewCell {
     static let imageSize = CGSize(width: 44, height: 44)
-    weak var userIcon: UIImageView?
-    weak var label: UILabel?
+    weak var userIcon: UIImageView!
+    weak var label: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,15 +41,21 @@ class UserListTableViewCell: UITableViewCell {
         self.label = label
     }
     
+    func setupSkeletonView() {
+        isSkeletonable = true
+        userIcon.isSkeletonable = true
+        self.label.isSkeletonable = true
+        self.label.text = "                         "
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func style(model: User) {
-        if let url = URL(string: model.avatarURL),
-           let userIcon = userIcon {
+        if let url = URL(string: model.avatarURL) {
             Nuke.loadImage(with: url, into: userIcon)
         }
-        label?.text = model.login
+        label.text = model.login
     }
 }

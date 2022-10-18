@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SkeletonView
 
-class UserDetailTableViewController: UITableViewController {
+class UserDetailTableViewController: UITableViewController, SkeletonTableViewDataSource {
     static let cellIdentifier = "Cell"
     static let headerIdentifier = "Header"
     let interactor: UserDetailInteractor
@@ -24,12 +25,15 @@ class UserDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
         tableView.register(UserDetailTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         tableView.register(UserDetailTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: Self.headerIdentifier)
-        
+        tableView.isSkeletonable = true
+        tableView.showAnimatedGradientSkeleton()
         Task {
             await interactor.loadData()
             DispatchQueue.main.async {
+                self.tableView.hideSkeleton()
                 self.tableView.reloadData()
             }
         }
@@ -58,9 +62,16 @@ extension UserDetailTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdentifier)
-        if let headerView = headerView as? UserDetailTableViewHeaderView,
-           let userDetail = interactor.getUserDetail() {
-            headerView.style(userDetail: userDetail)
+        if let headerView = headerView as? UserDetailTableViewHeaderView {
+            if let userDetail = interactor.getUserDetail() {
+                if headerView.sk.isSkeletonActive {
+                    headerView.hideSkeleton()
+                }
+                headerView.style(userDetail: userDetail)
+            } else {
+                headerView.setupSkeletonView()
+                headerView.showAnimatedGradientSkeleton()
+            }
         }
         return headerView
     }
@@ -71,5 +82,32 @@ extension UserDetailTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let repository = interactor.repository(at: indexPath.row) else { return }
         router.showWebView(with: repository, fromViewController: self)
+    }
+}
+
+// MARK: - Skeleton data source
+extension UserDetailTableViewController {
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath)
+        if let cell = cell as? UserDetailTableViewCell {
+            cell.setupSkeletonView()
+        }
+        return cell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+       return Self.cellIdentifier
+    }
+
+    func collectionSkeletonView(_ skeletonView: UITableView, prepareCellForSkeleton cell: UITableViewCell, at indexPath: IndexPath) {
     }
 }

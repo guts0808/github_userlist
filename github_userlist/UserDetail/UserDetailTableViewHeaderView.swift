@@ -7,6 +7,7 @@
 
 import UIKit
 import Nuke
+import SkeletonView
 
 class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
     static let imageSize = CGSize(width: 60, height: 60)
@@ -21,6 +22,8 @@ class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         
         let userIcon = UIImageView()
+        userIcon.clipsToBounds = true
+        userIcon.layer.cornerRadius = Self.imageSize.height / 2
         userIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(userIcon)
         
@@ -55,8 +58,8 @@ class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
             follower.topAnchor.constraint(equalTo: userIcon.bottomAnchor, constant: 16),
             contentView.bottomAnchor.constraint(equalTo: follower.bottomAnchor, constant: 8),
             followee.centerYAnchor.constraint(equalTo: follower.centerYAnchor),
-            followee.leftAnchor.constraint(equalTo: follower.rightAnchor, constant: 8),
-            followee.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor),
+            followee.leadingAnchor.constraint(equalTo: follower.trailingAnchor, constant: 8),
+            contentView.trailingAnchor.constraint(greaterThanOrEqualTo: followee.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: followee.bottomAnchor, constant: 8)
         ])
         
@@ -65,6 +68,21 @@ class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
         self.userFullName = userFullName
         self.follower = follower
         self.followee = followee
+        
+    }
+    
+    func setupSkeletonView() {
+        isSkeletonable = true
+        self.userIcon.isSkeletonable = true
+        self.userName.isSkeletonable = true
+        self.userFullName.isSkeletonable = true
+        self.follower.isSkeletonable = true
+        self.followee.isSkeletonable = true
+        
+        self.userName.text = "          "
+        self.userFullName.text = "          "
+        self.follower.text = "     "
+        self.followee.text = "     "
     }
     
     required init?(coder: NSCoder) {

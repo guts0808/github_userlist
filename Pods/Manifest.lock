@@ -13,20 +13,24 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.1.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.1.0)
+  - SkeletonView (1.30.3)
 
 DEPENDENCIES:
   - Nuke
   - OHHTTPStubs
+  - SkeletonView
 
 SPEC REPOS:
   trunk:
     - Nuke
     - OHHTTPStubs
+    - SkeletonView
 
 SPEC CHECKSUMS:
   Nuke: 279f17a599fd1c83cf51de5e0e1f2db143a287b0
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
+  SkeletonView: f5b099c708e42a278079a12bcaaf71c303be65a3
 
-PODFILE CHECKSUM: 0516dd59bc580477b281466c3dbcb3cc267847a9
+PODFILE CHECKSUM: bdbaffea9a6271c66e4990e19b67f0597d7b0ac4
 
 COCOAPODS: 1.11.3

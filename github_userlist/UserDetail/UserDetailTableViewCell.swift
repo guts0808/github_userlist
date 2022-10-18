@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class UserDetailTableViewCell: UITableViewCell {
     
@@ -49,7 +50,7 @@ class UserDetailTableViewCell: UITableViewCell {
             contentView.bottomAnchor.constraint(equalTo: starCount.bottomAnchor, constant: 8),
             language.leadingAnchor.constraint(equalTo: starCount.trailingAnchor, constant: 8),
             language.topAnchor.constraint(equalTo: repositoryDescription.bottomAnchor, constant: 8),
-            contentView.trailingAnchor.constraint(equalTo: language.trailingAnchor, constant: 8),
+            contentView.trailingAnchor.constraint(greaterThanOrEqualTo: language.trailingAnchor, constant: 8),
             contentView.bottomAnchor.constraint(equalTo: language.bottomAnchor, constant: 8)
         ])
         
@@ -57,6 +58,19 @@ class UserDetailTableViewCell: UITableViewCell {
         self.repositoryDescription = repositoryDescription
         self.starCount = starCount
         self.language = language
+    }
+    
+    func setupSkeletonView() {
+        isSkeletonable = true
+        self.repositoryName.isSkeletonable = true
+        self.repositoryDescription.isSkeletonable = true
+        self.starCount.isSkeletonable = true
+        self.language.isSkeletonable = true
+        
+        self.repositoryName.text = "          "
+        self.repositoryDescription.text = "          "
+        self.starCount.text = "          "
+        self.language.text = "          "
     }
     
     required init?(coder: NSCoder) {

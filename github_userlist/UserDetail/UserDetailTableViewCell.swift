@@ -19,10 +19,12 @@ class UserDetailTableViewCell: UITableViewCell {
         
         let repositoryName = UILabel()
         repositoryName.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        repositoryName.numberOfLines = 0
         repositoryName.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(repositoryName)
         
         let repositoryDescription = UILabel()
+        repositoryDescription.numberOfLines = 0
         repositoryDescription.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(repositoryDescription)
         
@@ -38,10 +40,10 @@ class UserDetailTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             repositoryName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             repositoryName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            repositoryName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8),
+            contentView.trailingAnchor.constraint(equalTo: repositoryName.trailingAnchor, constant: 8),
             repositoryDescription.topAnchor.constraint(equalTo: repositoryName.bottomAnchor, constant: 8),
             repositoryDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            repositoryDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8),
+            contentView.trailingAnchor.constraint(equalTo: repositoryDescription.trailingAnchor, constant: 8),
             starCount.topAnchor.constraint(equalTo: repositoryDescription.bottomAnchor, constant: 8),
             starCount.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             contentView.bottomAnchor.constraint(equalTo: starCount.bottomAnchor, constant: 8),
@@ -64,7 +66,7 @@ class UserDetailTableViewCell: UITableViewCell {
     func style(repository: Repository) {
         repositoryName.text = repository.name
         repositoryDescription.text = repository.repositoryDescription
-        starCount.text = String(repository.stargazersCount ?? 0)
+        starCount.text = "☆" + String(repository.stargazersCount ?? 0)
         self.language.text = repository.language
     }
 }

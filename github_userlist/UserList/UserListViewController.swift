@@ -42,3 +42,11 @@ extension UserListTableViewController {
         return cell
     }
 }
+
+extension UserListTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let user = interactor.user(at: indexPath.row) else { return }
+        let viewController = UserDetailTableViewController(userName: user.login)
+        present(viewController, animated: true)
+    }
+}

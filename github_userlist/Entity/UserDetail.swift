@@ -39,7 +39,7 @@ struct UserDetail: Codable {
     let id: Int
     let nodeID: String
     let avatarURL: String
-    let gravatarID: String
+    let gravatarID: String?
     let url: String
     let htmlURL: String
     let followersURL: String
@@ -53,14 +53,14 @@ struct UserDetail: Codable {
     let receivedEventsURL: String
     let type: String
     let siteAdmin: Bool
-    let name: String
-    let company: String
-    let blog: String
-    let location: String
-    let email: String
+    let name: String?
+    let company: String?
+    let blog: String?
+    let location: String?
+    let email: String?
     let hireable: Bool?
     let bio: String?
-    let twitterUsername: String
+    let twitterUsername: String?
     let publicRepos: Int
     let publicGists: Int
     let followers: Int

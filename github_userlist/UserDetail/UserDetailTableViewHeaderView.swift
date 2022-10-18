@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
     static let imageSize = CGSize(width: 60, height: 60)
@@ -33,6 +34,7 @@ class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(userFullName)
         
         let follower = UILabel()
+        follower.setContentHuggingPriority(.required, for: .horizontal)
         follower.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(follower)
         
@@ -45,24 +47,37 @@ class UserDetailTableViewHeaderView: UITableViewHeaderFooterView {
             userIcon.widthAnchor.constraint(equalToConstant: Self.imageSize.width),
             userIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             userIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            contentView.bottomAnchor.constraint(equalTo: userIcon.bottomAnchor, constant: 8),
             userName.leftAnchor.constraint(equalTo: userIcon.rightAnchor, constant: 16),
             userName.centerYAnchor.constraint(equalTo: userIcon.centerYAnchor, constant: -16),
             userFullName.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
             userFullName.leftAnchor.constraint(equalTo: userIcon.rightAnchor, constant: 16),
             follower.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             follower.topAnchor.constraint(equalTo: userIcon.bottomAnchor, constant: 16),
-            follower.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
+            contentView.bottomAnchor.constraint(equalTo: follower.bottomAnchor, constant: 8),
             followee.centerYAnchor.constraint(equalTo: follower.centerYAnchor),
             followee.leftAnchor.constraint(equalTo: follower.rightAnchor, constant: 8),
             followee.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor),
-            followee.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
+            contentView.bottomAnchor.constraint(equalTo: followee.bottomAnchor, constant: 8)
         ])
         
+        self.userIcon = userIcon
+        self.userName = userName
+        self.userFullName = userFullName
+        self.follower = follower
+        self.followee = followee
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+ 
+    func style(userDetail: UserDetail) {
+        if let url = URL(string: userDetail.avatarURL) {
+            Nuke.loadImage(with: url, into: userIcon)
+        }
+        userName.text = userDetail.login
+        userFullName.text = userDetail.name
+        follower.text = "\(userDetail.followers)フォロワー"
+        followee.text = "\(userDetail.following)フォロワー中"
+    }
 }

@@ -17,6 +17,7 @@
 		9360E67728FE4BAD00E8F318 /* UserDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360E67628FE4BAD00E8F318 /* UserDetailInteractor.swift */; };
 		9360E67928FE526E00E8F318 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360E67828FE526E00E8F318 /* UserListRouter.swift */; };
 		9360E67B28FE58E100E8F318 /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360E67A28FE58E100E8F318 /* UserDetailRouter.swift */; };
+		9360E67D28FE614300E8F318 /* UserDetailInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360E67C28FE614300E8F318 /* UserDetailInteractorTests.swift */; };
 		9392C0F128FD315A00C2B00C /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F028FD315A00C2B00C /* UserListTableViewCell.swift */; };
 		9392C0F328FD3CEA00C2B00C /* UserListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F228FD3CEA00C2B00C /* UserListInteractor.swift */; };
 		9392C0F528FD453B00C2B00C /* UserListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392C0F428FD453B00C2B00C /* UserListInteractorTests.swift */; };
@@ -58,6 +59,7 @@
 		9360E67628FE4BAD00E8F318 /* UserDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractor.swift; sourceTree = "<group>"; };
 		9360E67828FE526E00E8F318 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
 		9360E67A28FE58E100E8F318 /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
+		9360E67C28FE614300E8F318 /* UserDetailInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractorTests.swift; sourceTree = "<group>"; };
 		9392C0F028FD315A00C2B00C /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		9392C0F228FD3CEA00C2B00C /* UserListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractor.swift; sourceTree = "<group>"; };
 		9392C0F428FD453B00C2B00C /* UserListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractorTests.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				932848CE28FACAD10006BCA3 /* MockData */,
 				932848CC28FAC0010006BCA3 /* NetworkTests.swift */,
 				9392C0F428FD453B00C2B00C /* UserListInteractorTests.swift */,
+				9360E67C28FE614300E8F318 /* UserDetailInteractorTests.swift */,
 			);
 			path = github_userlistTests;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			files = (
 				932848CD28FAC0010006BCA3 /* NetworkTests.swift in Sources */,
 				9392C0F528FD453B00C2B00C /* UserListInteractorTests.swift in Sources */,
+				9360E67D28FE614300E8F318 /* UserDetailInteractorTests.swift in Sources */,
 				932848D228FAD0190006BCA3 /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
